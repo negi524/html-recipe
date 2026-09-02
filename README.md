@@ -1,1 +1,1 @@
-# html-validation-recipe
+# html-recipe
