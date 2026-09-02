@@ -1,5 +1,6 @@
 [tools]
 "npm:http-server" = "latest"
+pnpm = "11.25.0"
 
 [tasks.dev]
 description = "start server."
