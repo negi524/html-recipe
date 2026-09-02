@@ -1,50 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.css">
   <title>html-recipe</title>
 </head>
 <body>
-  <h1>フォームサンプル</h1>
-  <div class="wrapper">
-    <div class="form-container">
-      <section>
-        <h2>メールアドレス</h2>
-        <form class="form-item">
-          <input id="email" type="email" required />
-          <button class="form-btn">送信ボタン</button>
-        </form>
-      </section>
-      <section>
-        <h2>プルダウン</h2>
-        <form class="form-item">
-          <select id="pulldown" name="sample-pulldown" required>
-            <option value="">選択してください</option>
-            <option value="1">選択肢1</option>
-            <option value="2">選択肢2</option>
-            <option value="3">選択肢3</option>
-          </select>
-          <button class="form-btn">送信ボタン</button>
-        </form>
-      </section>
-      <section>
-        <h2>ラジオボタン</h2>
-        <form class="form-item">
-          <input type="radio" name="q1" required value="はい"> はい
-          <input type="radio" name="q1" required value="いいえ"> いいえ
-          <button class="form-btn">送信ボタン</button>
-        </form>
-      </section>
-      <section>
-        <h2>数値入力フォーム</h2>
-        <form class="form-item">
-          <input type="number" name="year" required min="1900" max="2100" step="1" /> 年
-          <button class="form-btn">送信ボタン</button>
-        </form>
-      </section>
-    </div>
-  </div>
+  <h1>html-recipe</h1>
+  <p>HTML 標準機能の挙動検証ページ集</p>
+  <ul class="page-list">
+    <li><a href="form.html">フォームサンプル</a> — email / select / radio / number 標準バリデーション</li>
+  </ul>
 </body>
 </html>

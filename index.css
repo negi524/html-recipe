@@ -1,0 +1,15 @@
+body {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.page-list {
+  padding-left: 1.2rem;
+}
+
+.page-list li {
+  margin-bottom: 0.5rem;
+}
