@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dialog.css">
+  <title>dialogサンプル | html-recipe</title>
+</head>
+<body>
+  <p><a href="index.html">← 目次に戻る</a></p>
+  <h1>dialogサンプル</h1>
+  <p>HTML 標準の <code>&lt;dialog&gt;</code> タグの挙動を確認するページ。</p>
+
+  <div class="wrapper">
+    <div class="dialog-container">
+
+      <section>
+        <h2>1. モーダルダイアログ（showModal）</h2>
+        <p>
+          <code>showModal()</code> で開くとページ全体が inert 状態になり、
+          背景に <code>::backdrop</code> が表示される。ESC キーで閉じられる。
+        </p>
+        <button class="dialog-btn" onclick="document.getElementById('modal-dialog').showModal()">
+          モーダルを開く
+        </button>
+        <dialog id="modal-dialog">
+          <h3>モーダルダイアログ</h3>
+          <p>これはモーダルダイアログです。背景操作はブロックされます。</p>
+          <form method="dialog">
+            <button>閉じる（form method="dialog"）</button>
+          </form>
+        </dialog>
+      </section>
+
+      <section>
+        <h2>2. 非モーダルダイアログ（show）</h2>
+        <p>
+          <code>show()</code> で開くと背景は操作可能。<code>::backdrop</code> は表示されず、
+          ESC キーでも閉じない。
+        </p>
+        <button class="dialog-btn" onclick="document.getElementById('nonmodal-dialog').show()">
+          非モーダルを開く
+        </button>
+        <dialog id="nonmodal-dialog">
+          <h3>非モーダルダイアログ</h3>
+          <p>背景を操作できます。</p>
+          <button onclick="document.getElementById('nonmodal-dialog').close()">
+            閉じる（close() 呼び出し）
+          </button>
+        </dialog>
+      </section>
+
+      <section>
+        <h2>3. backdrop クリックで閉じる</h2>
+        <p>
+          <code>::backdrop</code> をクリックしたら閉じる挙動を JS で付与した例。
+          ダイアログ内側のクリックでは閉じない。
+        </p>
+        <button class="dialog-btn" onclick="document.getElementById('backdrop-dialog').showModal()">
+          モーダルを開く（backdrop クリックで閉じる）
+        </button>
+        <dialog id="backdrop-dialog" class="backdrop-close">
+          <h3>backdrop クリックで閉じるモーダル</h3>
+          <p>ダイアログの外側（暗い部分）をクリックすると閉じます。</p>
+          <form method="dialog">
+            <button>閉じる</button>
+          </form>
+        </dialog>
+      </section>
+
+      <section>
+        <h2>4. returnValue を受け取る</h2>
+        <p>
+          <code>&lt;button value="..."&gt;</code> を <code>form method="dialog"</code> 内で submit すると、
+          その value が <code>dialog.returnValue</code> に入る。
+        </p>
+        <button class="dialog-btn" onclick="document.getElementById('return-dialog').showModal()">
+          確認ダイアログを開く
+        </button>
+        <p>結果: <span id="return-result">（未選択）</span></p>
+        <dialog id="return-dialog">
+          <h3>この操作を実行しますか?</h3>
+          <form method="dialog">
+            <button value="ok">OK</button>
+            <button value="cancel">キャンセル</button>
+          </form>
+        </dialog>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // backdrop クリックで閉じる
+    const backdropDialog = document.getElementById('backdrop-dialog');
+    backdropDialog.addEventListener('click', (e) => {
+      if (e.target === backdropDialog) {
+        backdropDialog.close();
+      }
+    });
+
+    // returnValue を表示
+    const returnDialog = document.getElementById('return-dialog');
+    const returnResult = document.getElementById('return-result');
+    returnDialog.addEventListener('close', () => {
+      returnResult.textContent = returnDialog.returnValue || '（未選択）';
+    });
+  </script>
+</body>
+</html>
